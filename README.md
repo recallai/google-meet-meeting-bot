@@ -51,7 +51,7 @@ cd google-meet-meeting-bot
 
 4. You must run Playwright **MANUALLY** once to log in generate the `auth.json` file (instructions for this are at the bottom if you need them)
 
-> Do NOT commit your `auth.json` or `.env` file to Git. Add both to `.gitignore` (which you'll have to create)
+> Do NOT commit your `auth.json` or `.env` file to Git. I've already added both to `.gitignore`
 
 5. Run your code: 
 ```
