@@ -1,0 +1,42 @@
+{
+  "name": "meetingbotpoc",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "backend",
+    "frontend",
+    "playwright",
+    "bot"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace backend\" \"npm run dev --workspace frontend\"",
+    "generate": "prisma generate --schema=src/backend/schema.prisma",
+    "migrate": "prisma migrate dev --schema=src/backend/schema.prisma",
+    "studio": "prisma studio --schema=src/backend/schema.prisma",
+    "format": "prettier --write ."
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.14",
+    "concurrently": "^8.0.0",
+    "playwright": "^1.52.0",
+    "prettier": "^3.5.3",
+    "prisma": "^6.7.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.7.0",
+    "@types/express": "^5.0.1",
+    "cors": "^2.8.5",
+    "dockerode": "^4.0.2",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "openai": "^4.97.0",
+    "playwright": "^1.52.0",
+    "postgres": "^3.4.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3",
+    "uuid": "^11.1.0"
+  },
+  "prisma": {
+    "schema": "src/backend/schema.prisma"
+  }
+}

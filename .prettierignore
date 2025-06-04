@@ -1,0 +1,28 @@
+# Prisma schema
+**/schema.prisma
+
+# Docker
+docker-compose.yml
+docker-compose.yaml
+**/Dockerfile
+Dockerfile
+Dockerfile.*
+
+# YAML (optional full ignore)
+*.yaml
+*.yml
+
+# Output and env files
+auth.json
+**/node_modules
+**/dist
+**/build
+**/migrations
+*.env
+*.env.*
+
+# Lock files (don't format)
+**/package-lock.json
+package-lock.json
+yarn.lock
+pnpm-lock.yaml

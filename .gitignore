@@ -1,0 +1,6 @@
+# Output and env files
+auth.json
+**/node_modules
+**/dist
+*.env
+*.env.*

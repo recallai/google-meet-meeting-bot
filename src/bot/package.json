@@ -1,0 +1,25 @@
+{
+  "name": "bot",
+  "version": "0.1.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "node dist/bot/index.js",
+    "build": "tsc --project src/bot/tsconfig.json",
+    "dev": "ts-node-dev --respawn src/bot/index.ts"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "uuid": "^9.0.0",
+    "@prisma/client": "^5.15.0"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.4.2",
+    "@types/uuid": "^9.0.2",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.4.5"
+  }
+}

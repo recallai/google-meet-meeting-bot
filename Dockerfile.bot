@@ -1,0 +1,30 @@
+# ─── image with browsers already installed ──────────────────────────────
+FROM mcr.microsoft.com/playwright:v1.52.0-noble
+ARG CACHEBUST=1
+WORKDIR /app
+
+# ─── root deps & shared config ──────────────────────────────────────────
+COPY tsconfig.base.json ./
+COPY package*.json       ./
+COPY auth.json         ./auth.json
+
+# ─── bot deps ───────────────────────────────────────────────────────────
+COPY src/bot/package*.json     ./src/bot/
+COPY src/bot/tsconfig.json     ./src/bot/
+# ─── source code ────────────────────────────────────────────────────────
+COPY src ./src
+
+# ─── Prisma schema (same one the backend uses) ──────────────────────────
+COPY src/backend/schema.prisma ./prisma/
+
+# ─── install & generate client ──────────────────────────────────────────
+RUN npm ci \
+ && npm ci --prefix ./src/bot \
+ && npx prisma generate                          # ← generates node_modules/.prisma
+
+# ─── build TS ───────────────────────────────────────────────────────────
+RUN echo "🔧 CACHEBUST=$CACHEBUST – building bot…" \
+ && npx tsc --project src/bot/tsconfig.json --pretty false \
+ && echo "✅ build done; index.js ⇒" && ls -l dist/bot/index.js
+
+ CMD ["xvfb-run", "-a", "node", "dist/bot/index.js"]

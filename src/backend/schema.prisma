@@ -1,0 +1,44 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+// replace YYOURPASSWORDHERE with your db password
+datasource db {
+    provider = "postgresql"
+    url      = "postgresql://meetingbot:<YOURPASSWORDHERE>@postgres:5432/meetingbotpoc"
+}
+
+model MeetingTranscript {
+    id        String    @id @default(uuid())
+    meetingId String    @unique
+    createdAt DateTime
+    segments  Segment[]
+}
+
+model MeetingSummary {
+    id          String   @id @default(uuid())
+    meetingId   String
+    summaryText String
+    generatedAt DateTime
+    model       String
+}
+
+model Segment {
+    id                String            @id @default(uuid())
+    meetingId         String
+    meetingTranscript MeetingTranscript @relation(fields: [meetingId], references: [meetingId])
+    start             Int
+    end               Int
+    text              String
+    speaker           String
+    @@unique([meetingId, start])
+}
+
+model MeetingJob {
+  id          String   @id @default(uuid())
+  meetingUrl  String
+  status      String   @default("pending")
+  meetingId   String? 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
