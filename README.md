@@ -37,7 +37,7 @@ If you're interested in the process, reasoning, demos, and more, [check out the 
 2. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/meetingbotpoc.git
+git clone https://github.com/recallai/google-meet-meeting-bot.git
 cd google-meet-meeting-bot
 ```
 
