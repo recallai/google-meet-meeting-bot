@@ -1,4 +1,4 @@
-# Google Meets Meeting Bot
+# Google Meet Meeting Bot
 
 This is a PoC that joins a Google Meet, scrapes live captions, sends captions to OpenAI for summarization, and stores the transcript and summary in PostgreSQL. I've added a small frontend to allow users to submit meeting links.
 
