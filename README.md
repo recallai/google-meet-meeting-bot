@@ -186,3 +186,5 @@ Save it as `auth.json` in the root of your project
 
 ### Huge Thanks To...
 Amanda for giving me the opportunity to work on this project. YK for showing me the ropes. Antonio for the eng side onboarding. The entire Recall.ai team for being such a stellar and generous team!
+
+<img src="https://readme-tracker.vercel.app/api/track" width="1" height="1" style="display:none;" alt="" />
