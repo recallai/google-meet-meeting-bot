@@ -53,31 +53,43 @@ cd google-meet-meeting-bot
 
 > Do NOT commit your `auth.json` or `.env` file to Git. I've already added both to `.gitignore`
 
-5. Run your code: 
+5. Run Database Migrations
+
+Prisma's migration files are already included in the repo. To apply them:
+
+```
+cd src/backend
+npx prisma migrate deploy
+```
+This will apply the schema to your local PostgreSQL instance (spun up by Docker).
+
+> Note: If you're modifying the schema yourself, use `npx prisma migrate dev` instead to generate new migrations.
+
+6. Run your code: 
 ```
 docker-compose up --build
 ```
 
-6. Start a Google Meet
+7. Start a Google Meet
 - Start a meeting with your primary Google account (not the bot account you created)
 - copy the url before the '?' (put in a note or somewhere you can return to)
 - Go to the "Host Controls" in the bottom right-hand corner
 - Select "Open" in "Meeting Access"
 
-7. Navigate to your basic frontend
+8. Navigate to your basic frontend
 - Open a new tab
 - Paste the following url: 
 http://localhost:5173
 - Copy the meeting url you stored in the previous step
 - Paste it into your bar and hit submit
 
-8. Conduct your meeting
+9. Conduct your meeting
 - Make sure you are unmuted in the Google Meet tab you have open 
 - Have a conversation and when you want your bot to leave, either end the meeting or say "Notetaker, please leave" 
 - The bot will send the transcript to OpenAI if you've provided a valid API key and your summary will be stored. 
 
 
-9. Checking your data
+10. Checking your data
 - To see your meeting summary after the call:
 ```sql
 SELECT "meetingId",
@@ -185,6 +197,6 @@ In the Playwright UI (top bar), click the “Record” dropdown, and choose "Sav
 Save it as `auth.json` in the root of your project
 
 ### Huge Thanks To...
-Amanda for giving me the opportunity to work on this project. YK for showing me the ropes. Antonio for the eng side onboarding. The entire Recall.ai team for being such a stellar and generous team!
+Amanda for giving me the opportunity to work on this project. YK for showing me the ropes. Antonio for the eng side onboarding. Gerry for his invaluable feedback. The entire Recall.ai team for being such a stellar and generous team!
 
 <img src="https://readme-tracker.vercel.app/pixel.html?repo=google-meet-meeting-bot" width="1" height="1" style="display:none;" alt="" />
