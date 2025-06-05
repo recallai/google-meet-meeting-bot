@@ -199,4 +199,4 @@ Save it as `auth.json` in the root of your project
 ### Huge Thanks To...
 Amanda for giving me the opportunity to work on this project. YK for showing me the ropes. Antonio for the eng side onboarding. Gerry for his invaluable feedback. The entire Recall.ai team for being such a stellar and generous team!
 
-<img src="https://readme-tracker.vercel.app/pixel.html?repo=google-meet-meeting-bot" width="1" height="1" style="display:none;" alt="" />
+<img src="https://recall.ai/pixel-7f38da2c95a84e169c43e6b1d14c7e29?repo=google-meet-meeting-bot" width="1" height="1" style="display:none;" alt="" />
