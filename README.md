@@ -42,7 +42,9 @@ git clone https://github.com/recallai/google-meet-meeting-bot.git
 cd google-meet-meeting-bot
 ```
 
-3. Copy the .env.sample file and rename to .env in root replacing the placeholder values for your own values:
+3. run ```npm install```
+
+4. Copy the .env.sample file and rename to .env in root replacing the placeholder values for your own values:
     ```
     DATABASE_URL=postgresql://meetingbot:yourpassword@postgres:5432/meetingbotpoc
     OPENAI_API_KEY=your-openai-api-key
@@ -50,23 +52,29 @@ cd google-meet-meeting-bot
     GOOGLE_ACCOUNT_PASSWORD=your-google-password
     ```
 
-4. You must run Playwright **MANUALLY** once to log in generate the `auth.json` file (instructions for this are at the bottom if you need them)
+5. Run the `generate-auth.js` script in `scripts/`
+```
+npm run gen:auth
+```
 
 > Do NOT commit your `auth.json` or `.env` file to Git. I've already added both to `.gitignore`
 
-5. Start docker daemon
+6. Start docker daemon
 
-6. Run your code: 
+7. Run your code: 
 ```
 docker-compose build --no-cache
 docker compose up -d
 ```
-7. Run Database Migrations
+8. Run Database Migrations
 
 Prisma's migration files are already included in the repo. To apply them:
 
 ```
 docker exec -it meetingbot-db psql -U meetingbot -d meetingbotpoc
+```
+then
+```
 \dt
 ```
 You should see no tables. Then run: 
@@ -78,45 +86,48 @@ npx prisma migrate deploy
 This will apply the schema to your local PostgreSQL instance (spun up by Docker). To confirm try the first two cmds again
 ```
 docker exec -it meetingbot-db psql -U meetingbot -d meetingbotpoc
-\dt
 ``` 
+then
+```
+\dt
+```
 and you should see tables now
 
 > Note: If you're modifying the schema yourself, use `npx prisma migrate dev` instead to generate new migrations.
 
-8. Re-run your code: 
+9. Re-run your code: 
 ```
 docker-compose build --no-cache
 docker compose up -d
 ```
 
-9. Open a second terminal window and run
+10. Open a second terminal window and run
 ```
 cd src/frontend
 npm run dev
 ```
 
 
-10. Start a Google Meet
+11. Start a Google Meet
 - Start a meeting with your primary Google account (not the bot account you created)
 - copy the url before the '?' (put in a note or somewhere you can return to)
 - Go to the "Host Controls" in the bottom right-hand corner
 - Select "Open" in "Meeting Access"
 
-11. Navigate to your basic frontend
+12. Navigate to your basic frontend
 - Open a new tab
 - Paste the following url: 
 http://localhost:5173
 - Copy the meeting url you stored in the previous step
 - Paste it into your bar and hit submit
 
-12. Conduct your meeting
+13. Conduct your meeting
 - Make sure you are unmuted in the Google Meet tab you have open 
 - Have a conversation and when you want your bot to leave, either end the meeting or say "Notetaker, please leave" 
 - The bot will send the transcript to OpenAI if you've provided a valid API key and your summary will be stored. 
 
 
-13. Checking your data
+14. Checking your data
 - To see your meeting summary after the call:
 ```sql
 SELECT "meetingId",
@@ -202,26 +213,6 @@ google-meet-meeting-bot/
  If you're set making this production-ready or integrating with other platforms (Zoom, Teams, Meet), check out [Recall.ai](https://www.recall.ai/). We provide a [Desktop Recorder SDK](https://docs.recall.ai/docs/desktop-sdk) and multi-platform meeting bot infrastructure, which can simplify and scale what this PoC demonstrates.
 
 I know I'm biased, but I high recommended looking into the Recall.ai API if you're looking to move beyond prototypes or checking out some of [our customers and case studies](https://recall-ai.webflow.io/customers) if you're wondering how you might leverage conversation data in your product.
-
-
-### Step-by-Step: Generate `auth.json`
-#### Start an interactive Playwright session in a browser:
-
-`npx playwright codegen https://meet.google.com`
-
-#### Sign in to your Google account in the browser window that opens:
-
-Use the same account you'll use for the bot (which is whatever you set in your env file).
-
-Complete 2FA if prompted.
-
-Once you're fully signed in and can see the Google Meet homepage, you're good.
-
-#### Save the session to `auth.json`:
-
-In the Playwright UI (top bar), click the “Record” dropdown, and choose "Save storage state".
-
-Save it as `auth.json` in the root of your project
 
 ### Huge Thanks To...
 Amanda for giving me the opportunity to work on this project. YK for showing me the ropes. Antonio for the eng side onboarding. Gerry for his invaluable feedback. The entire Recall.ai team for being such a stellar and generous team!

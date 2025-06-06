@@ -13,7 +13,8 @@
     "generate": "prisma generate --schema=src/backend/schema.prisma",
     "migrate": "prisma migrate dev --schema=src/backend/schema.prisma",
     "studio": "prisma studio --schema=src/backend/schema.prisma",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "gen:auth": "node scripts/generate-auth.js"
   },
   "devDependencies": {
     "@types/node": "^22.15.14",
