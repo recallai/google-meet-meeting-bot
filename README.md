@@ -41,7 +41,7 @@ git clone https://github.com/recallai/google-meet-meeting-bot.git
 cd google-meet-meeting-bot
 ```
 
-3. Create a .env file in root with these variables:
+3. Copy the .env.sample and rename it to .env in root with these variables:
     ```
     DATABASE_URL=postgresql://meetingbot:yourpassword@postgres:5432/meetingbotpoc
     OPENAI_API_KEY=your-openai-api-key
