@@ -272,7 +272,7 @@ async function scrapeCaptions(
     if (!jobId)
       console.warn("Missing JOB_ID env var – summary worker won’t start");
     else {
-      const res = await fetch("http://backend:3000/bot-done", {
+      const res = await fetch("http://backend:3001/bot-done", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ jobId, meetingId }),

@@ -33,6 +33,7 @@ If you're interested in the process, reasoning, demos, and more, [check out the 
     - [Git](https://git-scm.com)
     - A [Google account](https://accounts.google.com) to join meetings
     - An [OpenAI API key](https://platform.openai.com/account/api-keys)
+    - Install Playwright
 
 2. Clone the Repository
 
@@ -53,43 +54,69 @@ cd google-meet-meeting-bot
 
 > Do NOT commit your `auth.json` or `.env` file to Git. I've already added both to `.gitignore`
 
-5. Run Database Migrations
+5. Start docker daemon
+
+6. Run your code: 
+```
+docker-compose build --no-cache
+docker compose up -d
+```
+7. Run Database Migrations
 
 Prisma's migration files are already included in the repo. To apply them:
 
 ```
-cd src/backend
+docker exec -it meetingbot-db psql -U meetingbot -d meetingbotpoc
+\dt
+```
+You should see no tables. Then run: 
+```
+docker compose exec backend sh
 npx prisma migrate deploy
 ```
-This will apply the schema to your local PostgreSQL instance (spun up by Docker).
+
+This will apply the schema to your local PostgreSQL instance (spun up by Docker). To confirm try the first two cmds again
+```
+docker exec -it meetingbot-db psql -U meetingbot -d meetingbotpoc
+\dt
+``` 
+and you should see tables now
 
 > Note: If you're modifying the schema yourself, use `npx prisma migrate dev` instead to generate new migrations.
 
-6. Run your code: 
+8. Re-run your code: 
 ```
-docker-compose up --build
+docker-compose build --no-cache
+docker compose up -d
 ```
 
-7. Start a Google Meet
+9. Open a second terminal window and run
+```
+cd src/frontend
+npm run dev
+```
+
+
+10. Start a Google Meet
 - Start a meeting with your primary Google account (not the bot account you created)
 - copy the url before the '?' (put in a note or somewhere you can return to)
 - Go to the "Host Controls" in the bottom right-hand corner
 - Select "Open" in "Meeting Access"
 
-8. Navigate to your basic frontend
+11. Navigate to your basic frontend
 - Open a new tab
 - Paste the following url: 
 http://localhost:5173
 - Copy the meeting url you stored in the previous step
 - Paste it into your bar and hit submit
 
-9. Conduct your meeting
+12. Conduct your meeting
 - Make sure you are unmuted in the Google Meet tab you have open 
 - Have a conversation and when you want your bot to leave, either end the meeting or say "Notetaker, please leave" 
 - The bot will send the transcript to OpenAI if you've provided a valid API key and your summary will be stored. 
 
 
-10. Checking your data
+13. Checking your data
 - To see your meeting summary after the call:
 ```sql
 SELECT "meetingId",

@@ -17,7 +17,7 @@ import { runBot } from "../playwright/runBot";
 
     // send job completion to backend to summarize and update
     if (jobId) {
-      await fetch("http://backend:3000/bot-done", {
+      await fetch("http://backend:3001/bot-done", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ jobId, meetingId }),

@@ -20,14 +20,14 @@ export async function launchBotContainer(meetingUrl: string, jobId: string) {
 
   // create Docker container with bot image to run, env vars, run cmd
   const container = await docker.createContainer({
-    Image: "meetingbotpoc-bot",
+    Image: "meetingbot-bot",
     Env: env,
     Cmd: ["node", "dist/bot/index.js"],
     HostConfig: {
       // comment out autoremove for debugging, otherwise cleans after exit
       AutoRemove: true,
       // specifies Docker network to connect to
-      NetworkMode: "meetingbotpoc_default",
+      NetworkMode: "meetingbot-net",
     },
   });
 

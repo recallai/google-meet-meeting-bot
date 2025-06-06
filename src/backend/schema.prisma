@@ -5,7 +5,7 @@ generator client {
 // replace YYOURPASSWORDHERE with your db password
 datasource db {
     provider = "postgresql"
-    url      = "postgresql://meetingbot:<YOURPASSWORDHERE>@postgres:5432/meetingbotpoc"
+    url      = "postgresql://meetingbot:supersecret@postgres:5432/meetingbotpoc"
 }
 
 model MeetingTranscript {

@@ -12,7 +12,7 @@ form.addEventListener("submit", async (e) => {
   statusElem.innerText = "Submitting";
   try {
     // send url to backend
-    const res = await fetch(`http://localhost:3000/submit-link`, {
+    const res = await fetch(`http://localhost:3001/submit-link`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ url: url }),

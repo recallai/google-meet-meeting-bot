@@ -6,12 +6,13 @@ services:
     container_name: meetingbot-db
     environment:
       POSTGRES_USER: meetingbot
-      POSTGRES_PASSWORD: YOURPASSWORD
+      POSTGRES_PASSWORD: supersecret
       POSTGRES_DB: meetingbotpoc
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+    networks: [meetingbot]
 
   backend:
     build:
@@ -19,7 +20,7 @@ services:
       dockerfile: Dockerfile.be
     container_name: meetingbot-backend
     ports:
-      - "3000:3000"
+      - "3001:3001"
     env_file:
       - .env
     depends_on:
@@ -27,14 +28,19 @@ services:
       - bot
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    networks: [meetingbot]
 
   bot:
     build:
       context: .
       dockerfile: Dockerfile.bot
-    image: meetingbotpoc-bot
-    entrypoint: ["true"]     # container exits immediately, never starts Playwright
-
+    image: meetingbot-bot
+    entrypoint: ["true"]
+    networks: [meetingbot]
 
 volumes:
   pgdata:
+
+networks:
+  meetingbot:
+    name: meetingbot-net
