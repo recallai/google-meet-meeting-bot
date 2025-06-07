@@ -33,7 +33,7 @@ If you're interested in the process, reasoning, demos, and more, [check out the 
     - [Git](https://git-scm.com)
     - A [Google account](https://accounts.google.com) to join meetings
     - An [OpenAI API key](https://platform.openai.com/account/api-keys)
-    - Install Playwright `npm install -D playwright`
+    - Install Playwright `npm install -D playwright` then `npx playwright install`
 
 2. Clone the Repository
 
