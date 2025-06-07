@@ -123,6 +123,11 @@ http://localhost:5173
 
 
 14. Checking your data
+to access postgres go to the terminal window where you built docker and run: 
+```
+docker exec -it meetingbot-db psql -U meetingbot -d meetingbotpoc
+```
+then 
 - To see your meeting summary after the call:
 ```sql
 SELECT "meetingId",
