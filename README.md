@@ -68,16 +68,16 @@ npm run gen:auth
 
 > Do NOT commit your `auth.json` or `.env` file to Git. I've already added both to `.gitignore`
 
-6. Start docker daemon by opening the app you downloaded at the start
 
 7. Run your code: 
 ```
 docker-compose build --no-cache
 docker compose up -d
 ```
+> If you get an error when you run the above, make sure your Docker desktop app is open (the app you installed at the beginning)
 8. Run Database Migrations
 
-Prisma's migration files are already included in the repo. To apply them:
+Prisma's migration files are already included in the repo. To apply copy and paste the following in terminal (the first cmd opens a shell and the second deploys the migration):
  
 ```
 docker compose exec backend sh
@@ -90,13 +90,13 @@ and you should see tables now, but that is not necessary.
 
 > Note: If you're modifying the schema yourself, use `npx prisma migrate dev` instead to generate new migrations.
 
-9. Re-run your code: 
+9. Exit out of your shell by typing `exit` and hitting enter then re-run your code: 
 ```
 docker-compose build --no-cache
 docker compose up -d
 ```
 
-10. Open a second terminal window and run
+10. Open a **second terminal** window and run
 ```
 cd src/frontend
 npm install
