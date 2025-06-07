@@ -33,7 +33,7 @@ If you're interested in the process, reasoning, demos, and more, [check out the 
     - [Git](https://git-scm.com)
     - A [Google account](https://accounts.google.com) to join meetings
     - An [OpenAI API key](https://platform.openai.com/account/api-keys)
-    - Install Playwright
+    - Install Playwright `npm install -D playwright`
 
 2. Clone the Repository
 
@@ -51,6 +51,11 @@ cd google-meet-meeting-bot
     GOOGLE_ACCOUNT_USER=your-google-email
     GOOGLE_ACCOUNT_PASSWORD=your-google-password
     ```
+    run 
+    ``` 
+    cp .env.sample .env
+    ```
+    then update your env variables with your unique values
 
 5. Run the `generate-auth.js` script in `scripts/`
 ```
@@ -69,29 +74,15 @@ docker compose up -d
 8. Run Database Migrations
 
 Prisma's migration files are already included in the repo. To apply them:
-
-```
-docker exec -it meetingbot-db psql -U meetingbot -d meetingbotpoc
-```
-then
-```
-\dt
-```
-You should see no tables. Then run: 
+ 
 ```
 docker compose exec backend sh
 npx prisma migrate deploy
 ```
 
-This will apply the schema to your local PostgreSQL instance (spun up by Docker). To confirm try the first two cmds again
-```
-docker exec -it meetingbot-db psql -U meetingbot -d meetingbotpoc
-``` 
-then
-```
-\dt
-```
-and you should see tables now
+This will apply the schema to your local PostgreSQL instance (spun up by Docker). To confirm you can try the cmds in the appendix
+
+and you should see tables now, but that is not necessary.
 
 > Note: If you're modifying the schema yourself, use `npx prisma migrate dev` instead to generate new migrations.
 
@@ -104,9 +95,9 @@ docker compose up -d
 10. Open a second terminal window and run
 ```
 cd src/frontend
+npm install
 npm run dev
 ```
-
 
 11. Start a Google Meet
 - Start a meeting with your primary Google account (not the bot account you created)
@@ -169,6 +160,8 @@ Happy meeting!
 
 ```
 google-meet-meeting-bot/
+├── scripts/
+│   ├── generate-auth.js
 ├── src/
 │   ├── backend/
 │   │   ├── migrations/
@@ -214,7 +207,17 @@ google-meet-meeting-bot/
 
 I know I'm biased, but I high recommended looking into the Recall.ai API if you're looking to move beyond prototypes or checking out some of [our customers and case studies](https://recall-ai.webflow.io/customers) if you're wondering how you might leverage conversation data in your product.
 
+### Appendix
+To confirm your prisma tables you can run 
+```
+docker exec -it meetingbot-db psql -U meetingbot -d meetingbotpoc
+```
+then
+```
+\dt
+```
+
 ### Huge Thanks To...
-Amanda for giving me the opportunity to work on this project. YK for showing me the ropes. Antonio for the eng side onboarding. Gerry for his invaluable feedback. The entire Recall.ai team for being such a stellar and generous team!
+Amanda for giving me the opportunity to work on this project. YK for showing me the ropes. Antonio for the eng side onboarding. An an extra huge shoutout to Gerry for his invaluable feedback which has made this so simple to run that my mom (not an engineer) could do it. The entire Recall.ai team for being such a stellar and generous team!
 
 <img src="https://recall.ai/pixel-7f38da2c95a84e169c43e6b1d14c7e29?repo=google-meet-meeting-bot" width="1" height="1" style="display:none;" alt="" />
