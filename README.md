@@ -33,8 +33,8 @@ If you're interested in the process, reasoning, demos, and more, [check out the 
             - Open terminal and run `sudo apt install nodejs` then run `node -v` to confirm installation
             - npm on Linux: run `sudo apt install npm` then `npm -v` to confirm installation
         
-    - [Git](https://git-scm.com)
-    - A [Google account](https://accounts.google.com) to join meetings
+    - [Git](https://git-scm.com/downloads)
+    - A second [Google account](https://accounts.google.com) to join meetings (you will manually start a meeting using one account of your choosing and then your bot will need an account to join the meetings from)
     - An [OpenAI API key](https://platform.openai.com/account/api-keys)
     - Install Playwright `npm install -D playwright` then `npx playwright install`
 
