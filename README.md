@@ -162,6 +162,7 @@ WHERE  t."meetingId" = (
 GROUP  BY t."meetingId", t."createdAt";
 ```
 
+> **REMEMBER to hit 'q' everytime you want to exit out of the specific query results from the queries above and when you are done looking into what is in your database (postgreSQL) type `exit` again**
 
 Happy meeting!
 
