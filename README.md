@@ -26,10 +26,13 @@ If you're interested in the process, reasoning, demos, and more, [check out the 
 
 1. Install prereqs
     - [Docker](https://docs.docker.com/get-started/get-docker/)
-    - Node.js
-        - Open terminal and run `sudo apt install nodejs` then run `node -v` to confirm installation
-    - Install a package manager
-        - eg for npm on Linux: run `sudo apt install npm` then `npm -v` to confirm installation
+    - Install node and a package manager
+        - Option 1: 
+            - Brew install node by opening terminal and running `brew install node` then confirming installation by running `node -v` and `npm -v` (if you don't have homebrew installed, start by [installing homebrew](https://brew.sh/) on your machine)
+        - Option 2: 
+            - Open terminal and run `sudo apt install nodejs` then run `node -v` to confirm installation
+            - npm on Linux: run `sudo apt install npm` then `npm -v` to confirm installation
+        
     - [Git](https://git-scm.com)
     - A [Google account](https://accounts.google.com) to join meetings
     - An [OpenAI API key](https://platform.openai.com/account/api-keys)
