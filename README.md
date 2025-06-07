@@ -25,7 +25,7 @@ If you're interested in the process, reasoning, demos, and more, [check out the 
 ## How to run the project
 
 1. Install prereqs
-    - [Docker](https://docs.docker.com/get-started/get-docker/)
+    - [Docker](https://docs.docker.com/get-started/get-docker/) ()
     - Install node and a package manager
         - Option 1: 
             - Brew install node by opening terminal and running `brew install node` then confirming installation by running `node -v` and `npm -v` (if you don't have homebrew installed, start by [installing homebrew](https://brew.sh/) on your machine)
@@ -47,18 +47,19 @@ cd google-meet-meeting-bot
 
 3. run ```npm install```
 
-4. Copy the .env.sample file and rename to .env in root replacing the placeholder values for your own values:
-    ```
-    DATABASE_URL=postgresql://meetingbot:yourpassword@postgres:5432/meetingbotpoc
-    OPENAI_API_KEY=your-openai-api-key
-    GOOGLE_ACCOUNT_USER=your-google-email
-    GOOGLE_ACCOUNT_PASSWORD=your-google-password
-    ```
-    run 
+4. To copy the .env.sample file and rename to .env in root by running this: 
+
     ``` 
     cp .env.sample .env
     ```
-    then update your env variables with your unique values
+
+    replacing the placeholder values for your own values:
+    ```
+    DATABASE_URL=postgresql://meetingbot:supersecret@postgres:5432/meetingbotpoc
+    OPENAI_API_KEY=your-openai-api-key
+    GOOGLE_ACCOUNT_USER=your-second-google-email
+    GOOGLE_ACCOUNT_PASSWORD=your-second-google-password
+    ```
 
 5. Run the `generate-auth.js` script in `scripts/`
 ```
@@ -67,7 +68,7 @@ npm run gen:auth
 
 > Do NOT commit your `auth.json` or `.env` file to Git. I've already added both to `.gitignore`
 
-6. Start docker daemon
+6. Start docker daemon by opening the app you downloaded at the start
 
 7. Run your code: 
 ```
