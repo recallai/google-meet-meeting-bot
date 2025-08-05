@@ -4,6 +4,9 @@ This is a PoC that joins a Google Meet, scrapes live captions, sends captions to
 
 If you're interested in the process, reasoning, demos, and more, [check out the blog](https://www.recall.ai/blog/how-we-built-an-in-house-google-meet-bot).
 
+## Hosted Google Meet Bot
+If you don't want to host a bot yourself, look at [Recall.ai](https://www.recall.ai/?utm_source=github&utm_medium=sampleapp&utm_campaign=google-meet-bot-from-scratch)
+
 ## Tech Stack
 - Node.js / TypeScript
 - Playwright (headless browser bot)
