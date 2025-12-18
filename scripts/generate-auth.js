@@ -16,9 +16,47 @@ const LOGIN_URL =
   '?service=wise&passive=true&continue=https%3A%2F%2Fmeet.google.com%2F';
 
 (async () => {
-  console.log('Launching Chromium (headed) …');
-  const browser  = await chromium.launch({ headless: false });
-  const context  = await browser.newContext();
+  console.log('Launching browser for Google sign-in …');
+  let browser;
+  try {
+    // Prefer system Chrome to reduce Google login friction
+    browser = await chromium.launch({
+      channel: 'chrome',
+      headless: false,
+      args: [
+        '--disable-blink-features=AutomationControlled',
+        '--disable-dev-shm-usage',
+        '--no-sandbox',
+        '--disable-features=IsolateOrigins,site-per-process',
+      ],
+    });
+  } catch (e) {
+    console.warn('Falling back to bundled Chromium…');
+    browser = await chromium.launch({
+      headless: false,
+      args: [
+        '--disable-blink-features=AutomationControlled',
+        '--disable-dev-shm-usage',
+        '--no-sandbox',
+        '--disable-features=IsolateOrigins,site-per-process',
+      ],
+    });
+  }
+
+  const context  = await browser.newContext({
+    locale: 'en-US',
+    timezoneId: 'America/Los_Angeles',
+    userAgent:
+      'Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36',
+  });
+
+  // Reduce automation fingerprints
+  await context.addInitScript(() => {
+    try {
+      Object.defineProperty(navigator, 'webdriver', { get: () => undefined });
+    } catch {}
+  });
+
   const page     = await context.newPage();
 
   console.log('Navigating to Google sign-in …');
